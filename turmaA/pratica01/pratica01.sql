@@ -1,4 +1,4 @@
--- Active: 1789596111829@@127.0.0.1@5432@bd_hortifruti@public
+-- Active: 1787247980158@@127.0.0.1@5432@bd_hortifruti@public
 
 CREATE DATABASE bd_hortifruti;
 
@@ -96,6 +96,7 @@ ORDER BY
     produto_nome
     ;
 
+--consulta 2
 SELECT
     venda_id, 
     produto_nome,
@@ -110,14 +111,141 @@ ORDER BY
     valor_unitario DESC,
     venda_id;
 
-SELECT
+
+--consulta 3
+SELECT 
     venda_id, 
     data_venda, 
     produto_nome, 
     quantidade
+FROM 
+    itens_venda
+WHERE 
+    produto_nome LIKE 'Batata%'
+ORDER BY 
+    data_venda, 
+    venda_id;
+
+
+-- Consulta 4
+SELECT DISTINCT
+    venda_id,
+    data_venda,
+    bairro_entrega
 FROM
     itens_venda
-WHERE
+
+WHERE 
+    bairro_entrega IS NOT NULL
+
+ORDER BY
+    venda_id;
+
+
+-- Consulta 5
+SELECT 
+    venda_id, 
+    produto_nome, 
+    quantidade, 
+    unidade, 
+    valor_unitario,
+    ROUND(quantidade * valor_unitario, 2) AS valor_item
+FROM 
+    itens_venda
+
+ORDER BY 
+    valor_item DESC, 
+    venda_id
+LIMIT 5 OFFSET 5;
+
+-- Consulta 6
+SELECT 
+    venda_id, 
+    data_venda,
+    COALESCE(bairro_entrega, 'Retirada no balcao') AS destino,
+    COUNT(*) AS itens,
+    ROUND(SUM(quantidade * valor_unitario), 2) AS valor_total
+FROM 
+    itens_venda
+GROUP BY 
+    venda_id, 
+    data_venda, 
+    bairro_entrega
+ORDER BY 
+    valor_total DESC;
+
+-- Consulta 7
+SELECT data_venda,
+    COUNT(DISTINCT venda_id) AS vendas,
+    COUNT(*) AS itens,
+    ROUND(SUM(quantidade * valor_unitario), 2) AS faturamento
+FROM 
+    itens_venda
+GROUP BY 
+    data_venda
+ORDER BY 
+    data_venda;
+
+-- Consulta 8
+SELECT 
+    produto_id, 
+    produto_nome, 
+    unidade,
+    SUM(quantidade) AS qtd_total,
+    ROUND(SUM(quantidade * valor_unitario), 2) AS faturamento,
+    ROUND(AVG(valor_unitario), 2) AS media_simples,
+    ROUND(SUM(quantidade * valor_unitario) / SUM(quantidade), 2) AS media_ponderada
+FROM 
+    itens_venda
+GROUP BY 
+    produto_id, 
+    produto_nome, 
+    unidade
+ORDER BY 
+    faturamento DESC;
+
+-- Consulta 9
+SELECT categoria, unidade,
+    COUNT(*) AS itens,
+    SUM(quantidade) AS qtd_total,
+    ROUND(SUM(quantidade * valor_unitario), 2) AS faturamento
+FROM 
+    itens_venda
+GROUP BY 
+    categoria, unidade
+ORDER BY 
+    categoria;
+
+-- Consulta 10
+SELECT 
+    bairro_entrega,
+    COUNT(DISTINCT venda_id) AS entregas,
+    ROUND(SUM(quantidade * valor_unitario), 2) AS faturamento
+FROM 
+    itens_venda
+WHERE 
+    bairro_entrega IS NOT NULL
+GROUP BY 
+    bairro_entrega
+    HAVING SUM(quantidade * valor_unitario) > 40.00
+ORDER BY 
+faturamento DESC;
+
+-- Consulta 11
+SELECT 
+    venda_id,
+    ROUND(SUM(quantidade * valor_unitario), 2) AS total_arredondado,
+    SUM(ROUND(quantidade * valor_unitario, 2)) AS soma_dos_itens_arredondados
+FROM 
+    itens_venda
+GROUP BY 
+    venda_id
+    HAVING ROUND(SUM(quantidade * valor_unitario), 2)
+    <> SUM(ROUND(quantidade * valor_unitario, 2))
+ORDER BY
+    venda_id;
+
+
 
 
 
