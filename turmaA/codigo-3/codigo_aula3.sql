@@ -1,11 +1,12 @@
--- Active: 1787874268941@@127.0.0.1@5432@bd_vendas@public
+-- Active: 1788480248768@@127.0.0.1@5432@bd_vendas@public
+
 DROP TABLE IF EXISTS vendas_itens;
 
 CREATE TABLE vendas_itens(
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    venda_id INTEGER NOT NULL,
+
     produto_id INTEGER NOT NULL,
-    valor_unitario NUMERIC(10,2) NOT NULL,
+    valor_unitario NU    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    venda_id INTEGER NOT NULL,MERIC(10, 2) NOT NULL,
     data_venda DATE NOT NULL,
     observacao TEXT 
 );
@@ -90,45 +91,280 @@ INSERT INTO vendas_itens (venda_id, produto_id, valor_unitario, data_venda, obse
 (2016,  7, 199.99, '2025-09-16', 'Entrega agendada');
 
 
-
+-- Busca (venda_id -> Id da Venda, produto_id -> ID Produto, valor_unitario -> Valor, data_venda -> Data)
 SELECT
-    venda_id AS "id da Venda",
-    produto_id AS "id Produto",
+    venda_id AS "Id da Venda",
+    produto_id AS "Id Produto",
     valor_unitario AS "Valor",
     data_venda AS "Data"
-FROM 
+FROM
     vendas_itens;
 
-
-
-
-SELECT
-    venda_id AS "id da Venda",
-    data_venda AS "Data",
-    produto_id AS "id Produto",
-    valor_unitario AS "Valor"
-    
-FROM 
-    vendas_itens
-
-WHERE
-    venda_id = 2001;
-
+-- Todos os itens da venda 2001 (venda_id / data_venda / produto_id / valor_unitario)
 
 SELECT
     venda_id,
     data_venda,
     produto_id,
-    valor_unitario *1.1 AS "valor_venda"
-    
-FROM 
+    valor_unitario
+FROM
+    vendas_itens
+WHERE
+    venda_id = 2001;
+
+
+
+SELECT
+    id,
+    venda_id,
+    produto_id,
+    produto_id / 3 AS divisao_inteira,
+    produto_id % 3 AS resto,
+    produto_id / 3.0 AS divisao_decimal
+FROM
+    vendas_itens
+WHERE
+    produto_id = 10;
+
+-- Apresentar coluna valor_venda contabilizando 10% a mais do valor de cada produto
+SELECT
+    venda_id,
+    data_venda,
+    produto_id,
+    valor_unitario,
+    valor_unitario * 1.1 AS valor_venda
+FROM
     vendas_itens;
+
 
 SELECT
     'Venda ' || venda_id || ', produto ' || produto_id AS "Descrição",
     valor_unitario
 FROM
     vendas_itens
-WHERE 
+WHERE
     venda_id = 2001;
 
+
+-- Precedências entre AND e OR
+SELECT
+    venda_id,
+    produto_id,
+    valor_unitario,
+    data_venda
+FROM
+    vendas_itens
+WHERE
+    data_venda = '2025-09-01' OR data_venda = '2025-09-02' AND valor_unitario > 100;
+
+
+SELECT
+    venda_id,
+    produto_id,
+    valor_unitario,
+    data_venda
+FROM
+    vendas_itens
+WHERE
+    (data_venda = '2025-09-01' OR data_venda = '2025-09-02') AND valor_unitario > 100;
+
+
+SELECT
+    venda_id,
+    produto_id,
+    valor_unitario,
+    data_venda
+FROM
+    vendas_itens
+WHERE
+    --valor_unitario >= 50 AND valor_unitario <=100;
+    valor_unitario BETWEEN 50 AND 100
+ORDER BY
+    valor_unitario DESC;
+
+
+SELECT
+    venda_id,
+    produto_id,
+    valor_unitario,
+    data_venda
+FROM
+    vendas_itens
+WHERE
+    --valor_unitario >= 50 AND valor_unitario <=100;
+    valor_unitario NOT BETWEEN 50 AND 100
+ORDER BY
+    valor_unitario DESC;
+
+
+
+SELECT
+    venda_id,
+    produto_id,
+    valor_unitario,
+    data_venda
+FROM
+    vendas_itens
+WHERE
+    produto_id IN (1, 3, 6)
+ORDER BY
+    produto_id;
+
+
+SELECT
+    venda_id,
+    produto_id,
+    valor_unitario,
+    data_venda
+FROM
+    vendas_itens
+WHERE
+    produto_id NOT IN (1, 3, 6)
+ORDER BY
+    produto_id;
+
+
+SELECT
+    venda_id,
+    produto_id,
+    observacao
+FROM
+    vendas_itens
+WHERE
+    --observacao LIKE '%Entrega%';
+    --observacao ILIKE '%loja%';
+    --observacao ILIKE '%Loja%';
+    --observacao LIKE '%a%';
+    observacao NOT LIKE 'Entrega%';
+
+
+SELECT
+    venda_id,
+    observacao
+FROM
+    vendas_itens
+WHERE
+    observacao IS NULL;
+
+
+SELECT
+    venda_id,
+    observacao
+FROM
+    vendas_itens
+WHERE
+    observacao IS NOT NULL;
+
+SELECT
+    venda_id,
+    observacao
+FROM
+    vendas_itens
+WHERE
+    observacao NOT IN ('Entrega expressa', 'Entrega agendada') OR observacao IS NULL;
+
+
+SELECT
+    venda_id,
+    produto_id,
+    COALESCE(observacao, 'Sem observacao') AS observacao
+FROM
+    vendas_itens
+WHERE
+    venda_id = 2001;
+
+
+-- DISTINCT
+SELECT DISTINCT
+    produto_id,
+    valor_unitario,
+    data_venda
+FROM
+    vendas_itens
+WHERE
+    produto_id = 5
+ORDER BY
+    valor_unitario;
+
+
+SELECT
+    venda_id,
+    produto_id,
+    valor_unitario
+FROM
+    vendas_itens
+ORDER BY
+    valor_unitario,
+    venda_id,
+    produto_id;
+
+SELECT
+    venda_id,
+    observacao
+FROM
+    vendas_itens
+ORDER BY
+    --observacao DESC;
+    --observacao ASC;
+    observacao ASC NULLS FIRST;
+
+
+
+SELECT
+    venda_id,
+    produto_id,
+    valor_unitario,
+    data_venda
+FROM
+    vendas_itens
+ORDER BY
+    valor_unitario ASC,
+    data_venda ASC,
+    venda_id DESC
+LIMIT
+    5;
+
+SELECT
+    COUNT(*) AS iten,
+    COUNT(observacao) AS itens_com_observacao,
+    COUNT(DISTINCT venda_id) AS vendas,
+    COUNT(DISTINCT produto_id) AS produtos,
+    SUM(valor_unitario) AS soma,
+    ROUND(AVG(valor_unitario), 2) AS media,
+    MIN(valor_unitario) AS menor,
+    MAX(valor_unitario) AS maior
+FROM
+    vendas_itens;
+
+--valor_total de cada venda utiliar o order by ASC
+SELECT
+    venda_id,
+    SUM(valor_unitario) AS valor_total
+FROM
+    vendas_itens
+GROUP BY
+    venda_id,
+    data_venda
+ORDER BY
+    valor_total;
+
+
+SELECT
+    data_venda,
+    SUM(valor_unitario) AS valor_total_data
+FROM
+    vendas_itens
+GROUP BY
+    data_venda
+ORDER BY
+    valor_total_data;
+
+-- o valor da venda total de cada produto
+
+SELECT
+    produto_id,
+    SUM(valor_unitario) AS valor_final
+FROM
+    vendas_itens
+GROUP BY
+    produto_id;

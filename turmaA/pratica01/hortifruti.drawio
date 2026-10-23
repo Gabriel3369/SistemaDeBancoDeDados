@@ -1,0 +1,73 @@
+<mxfile host="65bd71144e">
+    <diagram name="Hortifruti" id="hortifruti-er">
+        <mxGraphModel dx="614" dy="165" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="entidade" value="ITEM_VENDA" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="440" y="370" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="attr_0" value="id" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;fontStyle=4;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="110" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_0" style="endArrow=none;html=1;strokeColor=#333333;" parent="1" source="entidade" target="attr_0" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="attr_1" value="venda_id" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="673.3583958711398" y="159.65558146251365" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_1" style="endArrow=none;html=1;strokeColor=#333333;" parent="1" source="entidade" target="attr_1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="attr_2" value="data_venda" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="811.4014761921583" y="289.6555814625137" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_2" style="endArrow=none;html=1;strokeColor=#333333;" parent="1" source="entidade" target="attr_2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="attr_3" value="bairro_entrega" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="811.4014761921583" y="450.3444185374863" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_3" style="endArrow=none;html=1;strokeColor=#333333;" parent="1" source="entidade" target="attr_3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="attr_4" value="produto_id" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="673.3583958711398" y="580.3444185374864" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_4" style="endArrow=none;html=1;strokeColor=#333333;" parent="1" source="entidade" target="attr_4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="attr_5" value="produto_nome" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="630" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_5" style="endArrow=none;html=1;strokeColor=#333333;" parent="1" source="entidade" target="attr_5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="attr_6" value="categoria" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="226.64160412886025" y="580.3444185374864" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_6" style="endArrow=none;html=1;strokeColor=#333333;" parent="1" source="entidade" target="attr_6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="attr_7" value="unidade" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="88.59852380784167" y="450.3444185374864" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_7" style="endArrow=none;html=1;strokeColor=#333333;" parent="1" source="entidade" target="attr_7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="attr_8" value="quantidade" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="88.59852380784162" y="289.65558146251374" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_8" style="endArrow=none;html=1;strokeColor=#333333;" parent="1" source="entidade" target="attr_8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="attr_9" value="valor_unitario" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="226.6416041288602" y="159.65558146251368" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_9" style="endArrow=none;html=1;strokeColor=#333333;" parent="1" source="entidade" target="attr_9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
